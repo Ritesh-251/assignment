@@ -3,7 +3,6 @@
 import { useIsBentoShell } from '../hooks/useIsBentoShell';
 import { useState, useEffect } from 'react';
 
-// Define the interface for the window object extension
 declare global {
   interface Window {
     ReactNativeWebView: {
@@ -17,12 +16,10 @@ export default function Page() {
   const [syncedData, setSyncedData] = useState<any>(null);
 
   useEffect(() => {
-    // UA Check
     if (window.navigator.userAgent.includes('BentoShell')) {
       setIsBentoShell(true);
     }
 
-    // Message Listener
     const handleMessage = (event: any) => {
        try {
          if (typeof event.data === 'string') {
@@ -32,7 +29,6 @@ export default function Page() {
             }
          }
        } catch (e) {
-         // ignore non-json
        }
     };
 
